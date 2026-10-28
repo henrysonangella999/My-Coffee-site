@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Coffees At SAM_HENRY Cafe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Karla:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1b120d;--roast:#2c1c13;--crema:#ead9bf;--caramel:#c98a43;--muted:#a58f78;--gap:28px;--w:270px}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:radial-gradient(1200px 500px at 50% 0,#2e1d13,var(--bg) 70%);color:var(--crema);font:500 1rem/1.5 Karla,system-ui,sans-serif;display:flex;flex-direction:column;justify-content:center;min-height:100vh;overflow-x:hidden}
+header{text-align:center;padding:0 20px 44px}
+h1{font:800 clamp(2.4rem,6vw,4.4rem)/1.02 Fraunces,Georgia,serif;letter-spacing:-.02em}
+header p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+.rail{overflow:hidden;padding:12px 0 8px;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;gap:var(--gap);width:max-content;animation:slide var(--dur,70s) linear infinite}
+.rail:hover .track,.rail:focus-within .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(calc(-50% - var(--gap)/2))}}
+figure{width:var(--w);flex:none}
+.photo{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:150px 150px 18px 18px;background:var(--roast);transition:transform .35s ease,box-shadow .35s ease}
+figure:hover .photo{transform:translateY(-6px);box-shadow:0 18px 36px #0008}
+figcaption{text-align:center;margin-top:16px;font:600 1.2rem/1.2 Fraunces,Georgia,serif;color:var(--crema)}
+figcaption small{display:block;margin-top:4px;font:500 .88rem Karla,sans-serif;color:var(--caramel)}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 20px 0}
+@media (max-width:600px){:root{--w:210px;--gap:18px}}
+@media (prefers-reduced-motion:reduce){.rail{overflow-x:auto}.track{animation:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Our Coffees At SAM_HENRY Cafe</h1>
+  <p>From the first bean to the last sip. Hover to pause.</p>
+</header>
+<main class="rail" aria-label="Coffee gallery"><div class="track" id="track"></div></main>
+<footer>FROM SAMUEL.HENRIKO.CAFE</footer>
+<script>
+// Edit names and notes here. Order matches the scroll order.
+const COFFEES=[
+ {
+  "name": "Fresh brew",
+  "note": "Beans, steam and a splash",
+  "img": "images/coffee-01.jpg"
+ },
+ {
+  "name": "Iced latte",
+  "note": "Milk swirling into cold coffee",
+  "img": "images/coffee-02.jpg"
+ },
+ {
+  "name": "Iced coffee with milk",
+  "note": "Poured over ice",
+  "img": "images/coffee-03.jpg"
+ },
+ {
+  "name": "Latte",
+  "note": "Steamed milk, poured slow",
+  "img": "images/coffee-04.jpg"
+ },
+ {
+  "name": "Black coffee",
+  "note": "Simple and strong",
+  "img": "images/coffee-05.jpg"
+ },
+ {
+  "name": "Flat white",
+  "note": "Velvet milk, rosetta art",
+  "img": "images/coffee-06.jpg"
+ },
+ {
+  "name": "Cheers",
+  "note": "Two lattes and an iced black",
+  "img": "images/coffee-07.jpg"
+ },
+ {
+  "name": "Americano",
+  "note": "Rich crema on top",
+  "img": "images/coffee-08.jpg"
+ },
+ {
+  "name": "Every shade",
+  "note": "From black to creamy",
+  "img": "images/coffee-09.jpg"
+ },
+ {
+  "name": "Cappuccino",
+  "note": "Heart latte art",
+  "img": "images/coffee-10.jpg"
+ },
+ {
+  "name": "Bean to cup",
+  "note": "Whole bean, ground, poured",
+  "img": "images/coffee-11.jpg"
+ },
+ {
+  "name": "Cortado",
+  "note": "With a morning croissant",
+  "img": "images/coffee-12.jpg"
+ },
+ {
+  "name": "Fresh grind",
+  "note": "Beans ready for the portafilter",
+  "img": "images/coffee-13.jpg"
+ }
+];
+const track=document.getElementById('track');
+const make=(c,hidden)=>{const f=document.createElement('figure');if(hidden)f.setAttribute('aria-hidden','true');
+f.innerHTML=`<img class="photo" src="${c.img}" alt="${hidden?'':c.name}" loading="eager"><figcaption>${c.name}<small>${c.note}</small></figcaption>`;return f};
+COFFEES.forEach(c=>track.append(make(c,false)));
+COFFEES.forEach(c=>track.append(make(c,true)));
+track.style.setProperty('--dur',(COFFEES.length*5.5)+'s');
+</script>
+</body>
+</html>
